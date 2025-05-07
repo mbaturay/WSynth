@@ -1,0 +1,227 @@
+Web-Based Synthesizer Application - Project Requirements Document
+
+1. Project Overview
+
+    1.1 Purpose
+
+   The purpose of this project is to develop a web-based synthesizer application that simulates the functionality of a traditional hardware synthesizer. The application will provide users with a virtual instrument that can generate and manipulate sound in real-time through a browser interface using the native Web Audio API.
+
+    1.2 Scope
+
+    The application will include all core components of a basic synthesizer, including oscillators, filters, amplifiers, envelope generators, LFOs, a mixer, and a virtual keyboard. It will be fully functional in modern web browsers without requiring any plugins or external audio libraries.
+
+    1.3 Target Users
+
+    - Music producers
+    - Sound designers
+    - Electronic music enthusiasts
+    - Educational institutions teaching sound synthesis
+    - Web developers interested in audio applications
+
+
+2. Functional Requirements
+
+    2.1 Oscillator (VCO) Requirements
+
+    - FR-2.1.1: The application shall provide at least two independent oscillators.
+    - FR-2.1.2: Each oscillator shall support at least four waveform types: sine, square, sawtooth, and triangle.
+    - FR-2.1.3: Each oscillator shall have independent volume control with a range of -60dB to 0dB.
+    - FR-2.1.4: Each oscillator shall have independent detune control with a range of -100 to +100 cents.
+    - FR-2.1.5: Oscillator parameters shall be adjustable in real-time without audio interruption.
+
+
+    2.2 Filter (VCF) Requirements
+
+    - FR-2.2.1: The application shall provide a filter module with at least three filter types: lowpass, highpass, and bandpass.
+    - FR-2.2.2: The filter shall have a cutoff frequency control with a range of 20Hz to 20,000Hz.
+    - FR-2.2.3: The filter shall have a resonance (Q) control with a range of 0.1 to 20.
+    - FR-2.2.4: Filter parameters shall be adjustable in real-time without audio interruption.
+
+
+    2.3 Amplifier (VCA) Requirements
+
+    - FR-2.3.1: The application shall provide a master volume control with a range of -60dB to 0dB.
+    - FR-2.3.2: Volume changes shall be smooth without clicks or pops.
+
+
+    2.4 Envelope Generator (ADSR) Requirements
+
+    - FR-2.4.1: The application shall provide an ADSR (Attack, Decay, Sustain, Release) envelope generator.
+    - FR-2.4.2: Attack time shall be adjustable from 0.01 to 2 seconds.
+    - FR-2.4.3: Decay time shall be adjustable from 0.01 to 2 seconds.
+    - FR-2.4.4: Sustain level shall be adjustable from 0 to 1 (normalized value).
+    - FR-2.4.5: Release time shall be adjustable from 0.01 to 5 seconds.
+    - FR-2.4.6: The envelope shall be triggered when a note is played and released when a note is released.
+
+
+    2.5 LFO (Low Frequency Oscillator) Requirements
+
+    - FR-2.5.1: The application shall provide an LFO module with at least four waveform types: sine, square, sawtooth, and triangle.
+    - FR-2.5.2: The LFO shall have a frequency control with a range of 0.1Hz to 20Hz.
+    - FR-2.5.3: The LFO shall have an amplitude control with a range of 0 to 1.
+    - FR-2.5.4: The LFO shall be able to modulate at least two targets: filter cutoff frequency and amplitude.
+    - FR-2.5.5: The LFO target shall be selectable by the user.
+
+
+    2.6 Mixer Requirements
+
+    - FR-2.6.1: The application shall provide a mixer to combine the outputs of all oscillators.
+    - FR-2.6.2: The mixer shall include a master volume control.
+
+
+    2.7 Keyboard Requirements
+
+    - FR-2.7.1: The application shall provide a virtual keyboard with at least one octave of keys.
+    - FR-2.7.2: The keyboard shall be playable using mouse clicks.
+    - FR-2.7.3: The keyboard shall be playable using the computer keyboard with a standard QWERTY mapping.
+    - FR-2.7.4: The keyboard shall provide visual feedback when keys are pressed.
+    - FR-2.7.5: The keyboard shall trigger the appropriate note frequencies when keys are pressed.
+
+
+    2.8 General Audio Requirements
+
+    - FR-2.8.1: The application shall require user interaction to start audio processing (to comply with browser autoplay policies).
+    - FR-2.8.2: The application shall produce sound with minimal latency (< 100ms).
+    - FR-2.8.3: The application shall handle multiple simultaneous note triggers appropriately.
+
+
+3. Technical Requirements
+
+    3.1 Platform Requirements
+
+    - TR-3.1.1: The application shall be implemented as a standalone web application using HTML, CSS, and JavaScript.
+    - TR-3.1.2: The application shall function in the latest versions of major browsers (Chrome, Firefox, Safari, Edge).
+    - TR-3.1.3: The application shall use the Web Audio API directly for all sound generation and processing.
+    - TR-3.1.4: The application shall not rely on external JavaScript frameworks or libraries (e.g., React, Vue, Tone.js).
+
+
+    3.2 Performance Requirements
+
+    - TR-3.2.1: The application shall maintain a stable audio output without dropouts or glitches on modern hardware.
+    - TR-3.2.2: The application shall have a maximum CPU usage of 30% on a mid-range computer.
+    - TR-3.2.3: The application shall have a maximum memory usage of 200MB.
+    - TR-3.2.4: The application shall initialize within 3 seconds of user interaction.
+
+
+    3.3 Code Requirements
+
+    - TR-3.3.1: The application shall be written in plain JavaScript (ES6 or later).
+    - TR-3.3.2: The application shall use modular code organization via ES6 modules (using <script type="module">).
+    - TR-3.3.3: All audio resources (oscillators, filters, gain nodes, etc.) shall be managed directly through Web Audio API.
+    - TR-3.3.4: The application shall properly clean up audio nodes to avoid memory leaks when stopping or restarting audio.
+
+
+4. User Interface Requirements
+
+    4.1 General UI Requirements
+
+    - UIR-4.1.1: The application shall have a responsive design that works on desktop and tablet devices.
+    - UIR-4.1.2: The application shall have a dark theme appropriate for audio applications.
+    - UIR-4.1.3: The application shall organize controls logically by synthesizer component.
+    - UIR-4.1.4: The application shall provide visual feedback for all interactive elements.
+
+
+    4.2 Control Requirements
+
+    - UIR-4.2.1: All continuous parameters shall be controlled via sliders with appropriate ranges and step sizes.
+    - UIR-4.2.2: All discrete parameters (e.g., waveform types) shall be controlled via dropdown selectors.
+    - UIR-4.2.3: All controls shall display their current value.
+    - UIR-4.2.4: All controls shall have appropriate labels.
+
+
+    4.3 Keyboard UI Requirements
+
+    - UIR-4.3.1: The virtual keyboard shall visually distinguish between white and black keys.
+    - UIR-4.3.2: The virtual keyboard shall show the computer key mapping on each key.
+    - UIR-4.3.3: The virtual keyboard shall provide visual feedback when keys are pressed.
+
+
+5. Accessibility Requirements
+
+    5.1 General Accessibility
+
+    - AR-5.1.1: The application shall have appropriate color contrast for all text and controls.
+    - AR-5.1.2: The application shall provide keyboard navigation for all controls.
+    - AR-5.1.3: The application shall include appropriate ARIA labels for all controls.
+    - AR-5.1.4: The application shall provide clear instructions for using the synthesizer.
+
+
+6. Testing Requirements
+
+    6.1 Functional Testing
+
+    - TR-6.1.1: All synthesizer components shall be tested for correct audio output using the Web Audio API.
+    - TR-6.1.2: All user controls shall be tested for correct parameter adjustment.
+    - TR-6.1.3: The keyboard shall be tested for correct note triggering.
+    - TR-6.1.4: The application shall be tested for correct audio initialization.
+
+
+    6.2 Performance Testing
+
+    - TR-6.2.1: The application shall be tested for CPU and memory usage.
+    - TR-6.2.2: The application shall be tested for audio latency.
+    - TR-6.2.3: The application shall be tested for audio dropouts under load.
+
+
+    6.3 Compatibility Testing
+
+    - TR-6.3.1: The application shall be tested on all major browsers.
+    - TR-6.3.2: The application shall be tested on desktop and tablet devices.
+
+
+7. Deliverables
+
+    7.1 Software Deliverables
+
+    - D-7.1.1: Complete source code for the synthesizer application.
+    - D-7.1.2: Build scripts and configuration files.
+    - D-7.1.3: Deployment package for web hosting.
+
+
+    7.2 Documentation Deliverables
+
+    - D-7.2.1: User manual explaining all synthesizer components and controls.
+    - D-7.2.2: Technical documentation describing the implementation using Web Audio API.
+    - D-7.2.3: API documentation for any reusable components.
+
+
+8. Future Enhancements (Not in Current Scope)
+
+    8.1 Potential Future Features
+
+    - FE-8.1.1: Preset system for saving and loading synthesizer settings.
+    - FE-8.1.2: Additional oscillator types (noise, FM, etc.).
+    - FE-8.1.3: Effects processing (reverb, delay, etc.).
+    - FE-8.1.4: MIDI device support.
+    - FE-8.1.5: Sequencer for programming patterns.
+    - FE-8.1.6: Waveform visualization.
+    - FE-8.1.7: Mobile device support.
+    - FE-8.1.8: Additional modulation sources and destinations.
+
+
+9. Glossary
+
+- VCO (Voltage Controlled Oscillator): Generates the raw waveforms that form the sound source.
+- VCF (Voltage Controlled Filter): Shapes the tone by removing certain frequencies.
+- VCA (Voltage Controlled Amplifier): Controls the loudness of the sound over time.
+- ADSR (Attack, Decay, Sustain, Release): Envelope that controls how a sound evolves over time.
+- LFO (Low Frequency Oscillator): Oscillator used for modulation rather than direct sound generation.
+- Cutoff Frequency: The frequency at which a filter begins to attenuate signals.
+- Resonance (Q): Emphasis of frequencies near the cutoff frequency of a filter.
+- Detune: Slight adjustment of pitch measured in cents (1/100th of a semitone).
+- Web Audio API: A high-level JavaScript API for processing and synthesizing audio in web applications, enabling direct control of audio nodes like oscillators, filters, and gain nodes in real-time.
+
+
+10. Approval
+
+This document requires approval from the following stakeholders before development begins:
+
+- Project Manager
+- Lead Developer
+- UX Designer
+- Client Representative
+
+
+---
+
+Document Version: 1.0Last Updated: 5/5/2025 Author: Baturay, Murat K.

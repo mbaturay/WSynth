@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSynth - Modern Web Synthesizer</title>
+    <link rel="stylesheet" href="src/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>WSynth</h1>
+            <button id="powerButton" aria-label="Power on/off">Power</button>
+        </header>
+
+        <main>
+            <div class="synth">
+                <!-- Oscillator 1 Section -->
+                <section class="module oscillators">
+                    <h2>Osc 1</h2>
+                    <div class="control">
+                        <label for="osc1-waveform">Type</label>
+                        <div class="select-wrapper">
+                            <select id="osc1-waveform" aria-label="Oscillator 1 waveform type">
+                                <option value="sine">Sine</option>
+                                <option value="square">Square</option>
+                                <option value="sawtooth" selected>Saw</option>
+                                <option value="triangle">Tri</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <label for="osc1-volume">Volume</label>
+                        <div class="knob-container">
+                            <div class="knob" id="osc1-volume-knob" data-control="osc1-volume" data-min="-60" data-max="0" data-value="-10"></div>
+                            <div class="knob-value">-10 dB</div>
+                        </div>
+                        <input type="range" id="osc1-volume" min="-60" max="0" value="-10" 
+                               aria-label="Oscillator 1 volume" step="1" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="osc1-pan">Pan</label>
+                        <div class="knob-container">
+                            <div class="knob" id="osc1-pan-knob" data-control="osc1-pan" data-min="-1" data-max="1" data-value="0"></div>
+                            <div class="knob-value">C</div>
+                        </div>
+                        <input type="range" id="osc1-pan" min="-1" max="1" value="0" 
+                               aria-label="Oscillator 1 pan" step="0.01" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="osc1-detune">Detune</label>
+                        <div class="knob-container">
+                            <div class="knob" id="osc1-detune-knob" data-control="osc1-detune" data-min="-100" data-max="100" data-value="0"></div>
+                            <div class="knob-value">0 cents</div>
+                        </div>
+                        <input type="range" id="osc1-detune" min="-100" max="100" value="0" 
+                               aria-label="Oscillator 1 detune" step="1" class="hidden-control">
+                    </div>
+                </section>
+
+                <!-- Oscillator 2 Section -->
+                <section class="module oscillators">
+                    <h2>Osc 2</h2>
+                    <div class="control">
+                        <label for="osc2-waveform">Type</label>
+                        <div class="select-wrapper">
+                            <select id="osc2-waveform" aria-label="Oscillator 2 waveform type">
+                                <option value="sine">Sine</option>
+                                <option value="square" selected>Square</option>
+                                <option value="sawtooth">Saw</option>
+                                <option value="triangle">Tri</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <label for="osc2-volume">Volume</label>
+                        <div class="knob-container">
+                            <div class="knob" id="osc2-volume-knob" data-control="osc2-volume" data-min="-60" data-max="0" data-value="-15"></div>
+                            <div class="knob-value">-15 dB</div>
+                        </div>
+                        <input type="range" id="osc2-volume" min="-60" max="0" value="-15" 
+                               aria-label="Oscillator 2 volume" step="1" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="osc2-pan">Pan</label>
+                        <div class="knob-container">
+                            <div class="knob" id="osc2-pan-knob" data-control="osc2-pan" data-min="-1" data-max="1" data-value="0"></div>
+                            <div class="knob-value">C</div>
+                        </div>
+                        <input type="range" id="osc2-pan" min="-1" max="1" value="0" 
+                               aria-label="Oscillator 2 pan" step="0.01" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="osc2-detune">Detune</label>
+                        <div class="knob-container">
+                            <div class="knob" id="osc2-detune-knob" data-control="osc2-detune" data-min="-100" data-max="100" data-value="0"></div>
+                            <div class="knob-value">0 cents</div>
+                        </div>
+                        <input type="range" id="osc2-detune" min="-100" max="100" value="0" 
+                               aria-label="Oscillator 2 detune" step="1" class="hidden-control">
+                    </div>
+                </section>
+
+                <!-- Filter Section -->
+                <section class="module filter">
+                    <h2>Filter</h2>
+                    <div class="control">
+                        <label for="filter-type">Type</label>
+                        <div class="select-wrapper">
+                            <select id="filter-type" aria-label="Filter type">
+                                <option value="lowpass" selected>Low</option>
+                                <option value="highpass">High</option>
+                                <option value="bandpass">Band</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <label for="filter-cutoff">Cutoff</label>
+                        <div class="knob-container">
+                            <div class="knob" id="filter-cutoff-knob" data-control="filter-cutoff" data-min="20" data-max="20000" data-value="2000" data-log="true"></div>
+                            <div class="knob-value">2000 Hz</div>
+                        </div>
+                        <input type="range" id="filter-cutoff" min="20" max="20000" value="2000" 
+                               aria-label="Filter cutoff frequency" step="1" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="filter-resonance">Resonance</label>
+                        <div class="knob-container">
+                            <div class="knob" id="filter-resonance-knob" data-control="filter-resonance" data-min="0.1" data-max="20" data-value="1"></div>
+                            <div class="knob-value">1</div>
+                        </div>
+                        <input type="range" id="filter-resonance" min="0.1" max="20" value="1" 
+                               aria-label="Filter resonance" step="0.1" class="hidden-control">
+                    </div>
+                </section>
+
+                <!-- Envelope Section -->
+                <section class="module envelope">
+                    <h2>Envelope</h2>
+                    <div class="control">
+                        <label for="env-attack">Attack</label>
+                        <div class="knob-container">
+                            <div class="knob" id="env-attack-knob" data-control="env-attack" data-min="0.01" data-max="2" data-value="0.1"></div>
+                            <div class="knob-value">0.1 s</div>
+                        </div>
+                        <input type="range" id="env-attack" min="0.01" max="2" value="0.1" 
+                               aria-label="Envelope attack time" step="0.01" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="env-decay">Decay</label>
+                        <div class="knob-container">
+                            <div class="knob" id="env-decay-knob" data-control="env-decay" data-min="0.01" data-max="2" data-value="0.2"></div>
+                            <div class="knob-value">0.2 s</div>
+                        </div>
+                        <input type="range" id="env-decay" min="0.01" max="2" value="0.2" 
+                               aria-label="Envelope decay time" step="0.01" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="env-sustain">Sustain</label>
+                        <div class="knob-container">
+                            <div class="knob" id="env-sustain-knob" data-control="env-sustain" data-min="0" data-max="1" data-value="0.7"></div>
+                            <div class="knob-value">0.7</div>
+                        </div>
+                        <input type="range" id="env-sustain" min="0" max="1" value="0.7" 
+                               aria-label="Envelope sustain level" step="0.01" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="env-release">Release</label>
+                        <div class="knob-container">
+                            <div class="knob" id="env-release-knob" data-control="env-release" data-min="0.01" data-max="5" data-value="0.5"></div>
+                            <div class="knob-value">0.5 s</div>
+                        </div>
+                        <input type="range" id="env-release" min="0.01" max="5" value="0.5" 
+                               aria-label="Envelope release time" step="0.01" class="hidden-control">
+                    </div>
+                </section>
+
+                <!-- LFO Section -->
+                <section class="module lfo">
+                    <h2>LFO</h2>
+                    <div class="control">
+                        <label for="lfo-waveform">Type</label>
+                        <div class="select-wrapper">
+                            <select id="lfo-waveform" aria-label="LFO waveform type">
+                                <option value="sine" selected>Sine</option>
+                                <option value="square">Square</option>
+                                <option value="sawtooth">Saw</option>
+                                <option value="triangle">Tri</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <label for="lfo-frequency">Rate</label>
+                        <div class="knob-container">
+                            <div class="knob" id="lfo-frequency-knob" data-control="lfo-frequency" data-min="0.1" data-max="20" data-value="1"></div>
+                            <div class="knob-value">1 Hz</div>
+                        </div>
+                        <input type="range" id="lfo-frequency" min="0.1" max="20" value="1" 
+                               aria-label="LFO frequency" step="0.1" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="lfo-amplitude">Depth</label>
+                        <div class="knob-container">
+                            <div class="knob" id="lfo-amplitude-knob" data-control="lfo-amplitude" data-min="0" data-max="1" data-value="0.5"></div>
+                            <div class="knob-value">0.5</div>
+                        </div>
+                        <input type="range" id="lfo-amplitude" min="0" max="1" value="0.5" 
+                               aria-label="LFO amplitude" step="0.01" class="hidden-control">
+                    </div>
+                    <div class="control">
+                        <label for="lfo-target">Target</label>
+                        <div class="select-wrapper">
+                            <select id="lfo-target" aria-label="LFO modulation target">
+                                <option value="filter" selected>Filter</option>
+                                <option value="amplitude">Amplitude</option>
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Master Section -->
+                <section class="module master">
+                    <h2>Master</h2>
+                    <div class="control">
+                        <label for="master-volume">Volume</label>
+                        <div class="knob-container">
+                            <div class="knob" id="master-volume-knob" data-control="master-volume" data-min="-60" data-max="0" data-value="-10"></div>
+                            <div class="knob-value">-10 dB</div>
+                        </div>
+                        <input type="range" id="master-volume" min="-60" max="0" value="-10" 
+                               aria-label="Master volume" step="1" class="hidden-control">
+                    </div>
+                </section>
+            </div>
+
+            <!-- Keyboard Section -->
+            <section class="keyboard-container">
+                <div class="keyboard" id="keyboard">
+                    <!-- Keys will be generated by JavaScript -->
+                </div>
+                <div class="keyboard-info">
+                    <p>Use computer keyboard (Z, X, C, ...) to play notes or click on the keys</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>WSynth - A Web Audio API Synthesizer</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="src/js/main.js"></script>
+    <script type="module" src="src/js/knob-controller.js"></script>
+</body>
+</html>
